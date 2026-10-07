@@ -1,0 +1,28 @@
+{%- if no_data -%}
+<div class="layout layout--col layout--center">
+  <span class="title">{{ s_nodata }}</span>
+  <span class="description">meteo.dob-world.com {{ s_nodata_desc }}</span>
+</div>
+{%- else -%}
+{%- capture rain_line -%}{%- if rain.size == 0 -%}{{ s_norain }}{%- else -%}{%- for w in rain -%}{%- assign mm = w.mm | replace: ".", dec -%}{{ s_rain }} {{ w.from }}–{{ w.to }}h{% if w.tomorrow %} ({{ s_tomorrow }}){% endif %} · {{ mm }} mm{%- unless forloop.last %} · {% endunless -%}{%- endfor -%}{%- endif -%}{%- endcapture -%}
+<div class="layout">
+  <div class="grid">
+    <div class="col col--span-4 gap--small">
+      <div class="flex flex--row flex--left flex--center-y gap--small">{{ icons[now.sky.icon] | replace: "__S__", "32" }}<span class="label label--small">{{ s_now }} · {{ now.time }}</span></div>
+      <span class="value value--tnums value--xlarge" data-value-fit="true">{{ n_temp }}°</span>
+      <span class="label">{{ cur_sky }}{% if today %} · {{ today.tmax }}° / {{ today.tmin }}°{% endif %}</span>
+    </div>
+    <div class="col col--span-8 gap--small">
+      <span class="label label--small">{{ rain_line }}</span>
+      <div id="chart-fc" class="w--full"></div>
+    </div>
+  </div>
+</div>
+<script>fcChart('chart-fc', {{ series.temp_hourly | json }}, { height: 120, fill: true, suffix: '°', tick: 6, size: 13, labelEvery: 6, rain: {{ series.rain_hourly | json }} });</script>
+{%- endif -%}
+
+<div class="title_bar">
+  <img class="image" src="data:image/png;base64,{{ icon_b64 }}">
+  <span class="title">{{ location }}</span>
+  <span class="instance">{{ updated }}</span>
+</div>
