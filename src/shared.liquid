@@ -1,0 +1,159 @@
+{%- assign lang = trmnl.plugin_settings.custom_fields_values.language | default: "es" -%}
+{%- assign dec = "," -%}
+{%- if lang == "en" -%}{%- assign dec = "." -%}{%- endif -%}
+{%- case lang -%}
+  {%- when "ca" -%}
+    {%- assign s_days = "Dg,Dl,Dt,Dc,Dj,Dv,Ds" -%}
+    {%- assign s_daysl = "Diumenge,Dilluns,Dimarts,Dimecres,Dijous,Divendres,Dissabte" -%}
+    {%- assign s_today = "Avui" -%}
+    {%- assign s_tomorrow = "demà" -%}
+    {%- assign s_now = "Ara" -%}
+    {%- assign s_feels = "Sensació" -%}
+    {%- assign s_hum = "Humitat" -%}
+    {%- assign s_wind = "Vent" -%}
+    {%- assign s_gust = "ratxa" -%}
+    {%- assign s_rain = "Pluja" -%}
+    {%- assign s_norain = "Sense pluja previsible" -%}
+    {%- assign s_next24 = "Properes 24 h" -%}
+    {%- assign s_bars = "barres: pluja per hora (mm)" -%}
+    {%- assign s_sun = "Sol" -%}
+    {%- assign s_nodata = "Sense previsió" -%}
+    {%- assign s_nodata_desc = "no s'ha pogut llegir la previsió." -%}
+    {%- assign s_delayed = "retard" -%}
+    {%- assign s_total = "total" -%}
+    {%- assign s_uv = "UV" -%}
+    {%- assign s_sky = "clear=Serè,mostly_clear=Poc ennuvolat,partly_cloudy=Intervals de núvols,cloudy=Ennuvolat,overcast=Cobert,fog=Boira,light_rain=Pluja feble,rain=Pluja,heavy_rain=Pluja forta,thunder=Tempesta,snow=Neu,unknown=—" -%}
+  {%- when "en" -%}
+    {%- assign s_days = "Sun,Mon,Tue,Wed,Thu,Fri,Sat" -%}
+    {%- assign s_daysl = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday" -%}
+    {%- assign s_today = "Today" -%}
+    {%- assign s_tomorrow = "tomorrow" -%}
+    {%- assign s_now = "Now" -%}
+    {%- assign s_feels = "Feels like" -%}
+    {%- assign s_hum = "Humidity" -%}
+    {%- assign s_wind = "Wind" -%}
+    {%- assign s_gust = "gust" -%}
+    {%- assign s_rain = "Rain" -%}
+    {%- assign s_norain = "No rain expected" -%}
+    {%- assign s_next24 = "Next 24 h" -%}
+    {%- assign s_bars = "bars: rain per hour (mm)" -%}
+    {%- assign s_sun = "Sun" -%}
+    {%- assign s_nodata = "No forecast" -%}
+    {%- assign s_nodata_desc = "could not read the forecast." -%}
+    {%- assign s_delayed = "delayed" -%}
+    {%- assign s_total = "total" -%}
+    {%- assign s_uv = "UV" -%}
+    {%- assign s_sky = "clear=Clear,mostly_clear=Mostly clear,partly_cloudy=Partly cloudy,cloudy=Cloudy,overcast=Overcast,fog=Fog,light_rain=Light rain,rain=Rain,heavy_rain=Heavy rain,thunder=Thunderstorm,snow=Snow,unknown=—" -%}
+  {%- else -%}
+    {%- assign s_days = "Dom,Lun,Mar,Mié,Jue,Vie,Sáb" -%}
+    {%- assign s_daysl = "Domingo,Lunes,Martes,Miércoles,Jueves,Viernes,Sábado" -%}
+    {%- assign s_today = "Hoy" -%}
+    {%- assign s_tomorrow = "mañana" -%}
+    {%- assign s_now = "Ahora" -%}
+    {%- assign s_feels = "Sensación" -%}
+    {%- assign s_hum = "Humedad" -%}
+    {%- assign s_wind = "Viento" -%}
+    {%- assign s_gust = "racha" -%}
+    {%- assign s_rain = "Lluvia" -%}
+    {%- assign s_norain = "Sin lluvia prevista" -%}
+    {%- assign s_next24 = "Próximas 24 h" -%}
+    {%- assign s_bars = "barras: lluvia por hora (mm)" -%}
+    {%- assign s_sun = "Sol" -%}
+    {%- assign s_nodata = "Sin previsión" -%}
+    {%- assign s_nodata_desc = "no se ha podido leer la previsión." -%}
+    {%- assign s_delayed = "retraso" -%}
+    {%- assign s_total = "total" -%}
+    {%- assign s_uv = "UV" -%}
+    {%- assign s_sky = "clear=Despejado,mostly_clear=Poco nuboso,partly_cloudy=Intervalos nubosos,cloudy=Nuboso,overcast=Cubierto,fog=Niebla,light_rain=Lluvia débil,rain=Lluvia,heavy_rain=Lluvia fuerte,thunder=Tormenta,snow=Nieve,unknown=—" -%}
+{%- endcase -%}
+
+{%- assign n_temp = now.temp | replace: ".", dec -%}
+{%- assign n_feels = now.feels | replace: ".", dec -%}
+{%- assign n_rain24 = rain_mm_24h | replace: ".", dec -%}
+{%- assign w_dir = now.wind_dir -%}
+{%- if lang == "en" -%}{%- assign w_dir = now.wind_dir | replace: "O", "W" -%}{%- endif -%}
+{%- assign day_names = s_days | split: "," -%}
+{%- assign day_names_long = s_daysl | split: "," -%}
+{%- assign sky_pairs = s_sky | split: "," -%}
+{%- assign cur_code = now.sky.code -%}
+{%- assign cur_sky = "" -%}
+{%- for p in sky_pairs -%}{%- assign kv = p | split: "=" -%}{%- if kv[0] == cur_code -%}{%- assign cur_sky = kv[1] -%}{%- endif -%}{%- endfor -%}
+
+
+{%- comment -%} Iconos Lucide, en este orden: sol, luna, nube, nube-sol, nube-luna, niebla, llovizna, lluvia, tormenta, nieve (el transform da el índice). __S__ = tamaño en px. {%- endcomment -%}
+{%- capture icons_raw -%}<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.188 8.5A6 6 0 0 1 16 4a1 1 0 0 0 6 6 6 6 0 0 1-3 5.197"/><path d="M13 16a3 3 0 1 1 0 6H7a5 5 0 1 1 4.9-6Z"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 17H7"/><path d="M17 21H9"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M8 19v1"/><path d="M8 14v1"/><path d="M16 19v1"/><path d="M16 14v1"/><path d="M12 21v1"/><path d="M12 16v1"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973"/><path d="m13 12-3 5h4l-3 5"/></svg>§<svg width="__S__" height="__S__" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>{%- endcapture -%}
+{%- assign icons = icons_raw | split: "§" -%}
+
+{%- capture icon_b64 -%}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{%- endcapture -%}
+
+<script src="https://trmnl.com/js/highcharts/12.3.0/highcharts.js"></script>
+<script src="https://trmnl.com/js/highcharts/12.3.0/pattern-fill.js"></script>
+<script>
+  // Dibuja una serie [[ms, valor], ...] (hora local como UTC). opts: type, height (px), suffix, tick (h), size (px de fuente), labelEvery (h), rain ([[ms, mm], ...] en barras con eje propio), fill (el gráfico ocupa el espacio libre de la vista)
+  window.fcChart = function (id, data, opts) {
+    opts = opts || {};
+    var size = (opts.size || 14) + 'px';
+    var pts = data.map(function (d) { return { x: d[0], y: d[1] }; });
+    if (opts.labelEvery && data.length) {
+      var step = opts.labelEvery * 3600 * 1000, end = data[data.length - 1][0];
+      for (var t = Math.ceil(data[0][0] / step) * step; t <= end; t += step) {
+        var best = 0;
+        data.forEach(function (d, i) { if (Math.abs(d[0] - t) < Math.abs(data[best][0] - t)) best = i; });
+        if (Math.abs(data[best][0] - t) <= 35 * 60 * 1000) {
+          pts[best].marker = { enabled: true, radius: 5, fillColor: '#000', lineWidth: 0 };
+          pts[best].dataLabels = {
+            enabled: true, format: '{y:.1f}' + (opts.suffix || ''), y: -12, allowOverlap: true, crop: false, overflow: 'allow',
+            backgroundColor: '#fff', padding: 2, borderRadius: 3,
+            style: { fontSize: size, fontWeight: 'bold', color: '#000', textOutline: 'none' }
+          };
+        }
+      }
+    }
+    var rainPts = null, rainMax = 3;
+    if (opts.rain && opts.rain.length) {
+      rainPts = opts.rain.map(function (d) {
+        var p = { x: d[0], y: d[1] };
+        if (d[1] >= 0.5) p.dataLabels = { enabled: true, format: '{y:.1f}', y: -2, allowOverlap: true, crop: false, overflow: 'allow', style: { fontSize: '11px', fontWeight: 'bold', color: '#000', textOutline: 'none' } };
+        rainMax = Math.max(rainMax, d[1] * 2.8);
+        return p;
+      });
+    }
+    var draw = function () {
+      Highcharts.setOptions({ lang: { decimalPoint: '{{ dec }}' } });
+      var chart = Highcharts.chart(id, {
+        chart: { height: opts.height, backgroundColor: 'transparent', animation: false, spacing: [6, 6, 0, 12] },
+        title: { text: null }, credits: { enabled: false }, legend: { enabled: false }, tooltip: { enabled: false },
+        xAxis: {
+          type: 'datetime', lineColor: '#000', tickColor: '#000', tickLength: 4, gridLineWidth: 0,
+          tickInterval: (opts.tick || 6) * 3600 * 1000,
+          labels: { format: '{value:%H}h', style: { fontSize: size, color: '#000' } }
+        },
+        yAxis: [{
+          title: { text: null }, gridLineWidth: 1, gridLineColor: '#000', gridLineDashStyle: 'ShortDot',
+          tickAmount: opts.tickAmount || 4, min: opts.min, maxPadding: opts.labelEvery ? 0.2 : undefined, softMin: opts.softMin, softMax: opts.softMax,
+          labels: { format: '{value}' + (opts.suffix || ''), style: { fontSize: size, color: '#000' } }
+        }].concat(rainPts ? [{ title: { text: null }, visible: false, opposite: true, min: 0, max: rainMax, gridLineWidth: 0 }] : []),
+        plotOptions: {
+          series: { animation: false, enableMouseTracking: false, color: '#000', lineWidth: 4, marker: { enabled: false } },
+          column: { borderWidth: 0, pointPadding: 0.05, groupPadding: 0, color: '#000' }
+        },
+        series: (rainPts ? [{
+          type: 'column', yAxis: 1, data: rainPts, zIndex: 0, pointPadding: 0.08, groupPadding: 0,
+          color: { pattern: { image: 'https://trmnl.com/images/grayscale/gray-5.png', width: 12, height: 12 } },
+          borderColor: '#000', borderWidth: 1.5
+        }] : []).concat([{ type: 'line', data: pts, zIndex: 2 }])
+      });
+      // Ajusta la altura al espacio libre de la vista (pantallas de distinto tamaño).
+      var fit = function () {
+        var layout = document.getElementById(id).closest('.layout');
+        if (!layout) return;
+        var used = 0;
+        for (var i = 0; i < layout.children.length; i++) used += layout.children[i].offsetHeight;
+        var h = Math.max(60, Math.round(chart.chartHeight + layout.clientHeight - used - 18));
+        if (Math.abs(h - chart.chartHeight) > 1) chart.setSize(null, h, false);
+      };
+      if (opts.fill) { fit(); window.addEventListener('load', fit); }
+    };
+    if (window.Highcharts) draw(); else window.addEventListener('load', draw);
+  };
+</script>

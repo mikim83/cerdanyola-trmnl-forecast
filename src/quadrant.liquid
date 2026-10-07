@@ -1,0 +1,24 @@
+{%- if no_data -%}
+<div class="layout layout--col layout--center">
+  <span class="title">{{ s_nodata }}</span>
+  <span class="description">meteo.dob-world.com {{ s_nodata_desc }}</span>
+</div>
+{%- else -%}
+{%- capture rain_line -%}{%- if rain.size == 0 -%}{{ s_norain }}{%- else -%}{%- for w in rain -%}{%- assign mm = w.mm | replace: ".", dec -%}{{ s_rain }} {{ w.from }}–{{ w.to }}h{% if w.tomorrow %} ({{ s_tomorrow }}){% endif %} · {{ mm }} mm{%- unless forloop.last %} · {% endunless -%}{%- endfor -%}{%- endif -%}{%- endcapture -%}
+<div class="layout layout--col layout--center">
+  <div class="item">
+    <div class="meta"></div>
+    <div class="content">
+      <div class="flex flex--row flex--center-y gap--small">{{ icons[now.sky.icon] | replace: "__S__", "40" }}<span class="value value--tnums value--xlarge" data-value-fit="true">{{ n_temp }}°</span></div>
+      <span class="label">{% if today %}{{ today.tmax }}° / {{ today.tmin }}° · {% endif %}{{ cur_sky }}</span>
+      <span class="label label--small">{{ rain_line }}</span>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+<div class="title_bar">
+  <img class="image" src="data:image/png;base64,{{ icon_b64 }}">
+  <span class="title">{{ location }}</span>
+  <span class="instance">{{ updated }}</span>
+</div>
