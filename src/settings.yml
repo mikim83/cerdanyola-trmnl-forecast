@@ -40,6 +40,13 @@ custom_fields:
   - Castellano: es
   - English: en
   default: ca
+- keyname: about
+  field_type: author_bio
+  name: About This Plugin
+  category: environment,life
+  description: Weather forecast for Cerdanyola del Vallès (Barcelona) from meteo.dob-world.com, a home weather station. Combines AEMET with the AROME, ECMWF and ICON models. Shows the current hour, a 24 h temperature chart with hourly rain bars, rain windows and the next 5 days. Languages - Catalan, Spanish and English. Unofficial personal project.
+  github_url: https://github.com/mikim83/cerdanyola-trmnl-forecast
+  learn_more_url: https://meteo.dob-world.com
 name: Cerdanyola Forecast
 description: Previsió del temps a Cerdanyola del Vallès (meteo.dob-world.com)
 refresh_interval: 60
