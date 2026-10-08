@@ -67,8 +67,8 @@
     {%- assign s_sky = "Despejado,Poco nuboso,Intervalos nubosos,Nuboso,Cubierto,Niebla,Lluvia débil,Lluvia,Lluvia fuerte,Tormenta,Nieve,—" -%}
 {%- endcase -%}
 
-{%- assign n_temp = now.temp | replace: ".", dec -%}
-{%- assign n_feels = now.feels | replace: ".", dec -%}
+{%- assign n_temp = now.temp | replace: ".", dec | default: "—" -%}
+{%- assign n_feels = now.feels | replace: ".", dec | default: "—" -%}
 {%- assign n_rain24 = rain_mm_24h | replace: ".", dec -%}
 {%- assign w_dir = now.wind_dir -%}
 {%- if lang == "en" -%}{%- assign w_dir = now.wind_dir | replace: "O", "W" -%}{%- endif -%}
@@ -86,6 +86,7 @@
 
 <script src="https://trmnl.com/js/highcharts/12.3.0/highcharts.js"></script>
 <script src="https://trmnl.com/js/highcharts/12.3.0/pattern-fill.js"></script>
+<script src="https://trmnl.com/js/chartkick/5.0.1/chartkick.min.js"></script>
 <script>
   // Dibuja una serie [[ms, valor], ...] (hora local como UTC) con TRMNLCharts, que adapta el
   // gráfico al dispositivo, la escala, el modo oscuro y el tema. opts: suffix, tick (h), size (px
@@ -146,7 +147,7 @@
         }));
         // Ajusta la altura al espacio libre de la vista (pantallas de distinto tamaño).
         var fit = function () {
-          var layout = document.getElementById(id).closest('.layout');
+          var layout = chart.container.closest('.layout');
           if (!layout) return;
           var used = 0;
           for (var i = 0; i < layout.children.length; i++) used += layout.children[i].offsetHeight;
@@ -157,7 +158,16 @@
         return chart;
       });
     };
-    Highcharts.setOptions({ lang: { decimalPoint: '{{ dec }}' } });
-    if (window.TRMNLCharts) draw(); else window.addEventListener('load', draw);
+    // Espera a Highcharts, TRMNLCharts y TRMNLPaint (los carga el framework) antes de dibujar.
+    var tries = 0;
+    var whenReady = function () {
+      if (window.Highcharts && window.TRMNLCharts && window.TRMNLPaint) {
+        Highcharts.setOptions({ lang: { decimalPoint: '{{ dec }}' } });
+        draw();
+      } else if (tries++ < 200) {
+        setTimeout(whenReady, 50);
+      }
+    };
+    whenReady();
   };
 </script>
