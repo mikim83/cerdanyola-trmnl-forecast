@@ -4,6 +4,7 @@
   <span class="description">meteo.dob-world.com {{ s_nodata_desc }}</span>
 </div>
 {%- else -%}
+{%- assign chart_id = "chart-" | append_random -%}
 {%- capture rain_line -%}{%- if rain.size == 0 -%}{{ s_norain }}{%- else -%}{%- for w in rain -%}{%- assign mm = w.mm | replace: ".", dec -%}{{ s_rain }} {{ w.from }}–{{ w.to }}h{% if w.tomorrow %} ({{ s_tomorrow }}){% endif %} · {{ mm }} mm{%- unless forloop.last %} · {% endunless -%}{%- endfor -%}{%- endif -%}{%- endcapture -%}
 <div class="layout layout--col gap--space-between">
 
@@ -22,7 +23,7 @@
 
     <div class="col col--span-8 gap--small">
       <span class="label label--small">{{ s_next24 }} · {{ s_bars }}</span>
-      <div id="chart-fc" class="w--full"></div>
+      <div id="{{ chart_id }}" class="w--full"></div>
     </div>
   </div>
 
@@ -42,7 +43,7 @@
   </div>
 
 </div>
-<script>fcChart('chart-fc', {{ series.temp_hourly | json }}, { height: 170, fill: true, suffix: '°', tick: 3, size: 13, labelEvery: 6, rain: {{ series.rain_hourly | json }} });</script>
+<script>fcChart('{{ chart_id }}', {{ series.temp_hourly | json }}, { height: 170, fill: true, suffix: '°', tick: 3, size: 13, labelEvery: 6, rain: {{ series.rain_hourly | json }} });</script>
 {%- endif -%}
 
 <div class="title_bar">
