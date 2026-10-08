@@ -19,7 +19,7 @@
     </div>
   </div>
 </div>
-<script>fcChart('{{ chart_id }}', {{ series.temp_hourly | json }}, { height: 120, fill: true, suffix: '°', tick: 6, size: 13, labelEvery: 6, rain: {{ series.rain_hourly | json }} });</script>
+<script>fcChart('{{ chart_id }}', {{ series.temp_hourly | json }}, { fill: true, suffix: '°', tick: 6, size: 13, labelEvery: 6, rain: {{ series.rain_hourly | json }} });</script>
 {%- endif -%}
 
 <div class="title_bar">

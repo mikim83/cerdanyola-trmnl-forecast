@@ -36,14 +36,14 @@
     <div class="col col--center gap--small">
       <span class="label label--underline">{% if d.today %}{{ s_today }}{% else %}{{ day_names[d.dow] }}{% endif %}</span>
       {{ icons[d.sky.icon] | replace: "__S__", "40" }}
-      <span class="value value--tnums value--small">{{ d.tmax }}° <span class="label">/ {{ d.tmin }}°</span></span>
+      <span class="value value--tnums value--small lg:value--large">{{ d.tmax }}° <span class="label">/ {{ d.tmin }}°</span></span>
       <span class="label label--small">{{ d.pop }}% · {{ d.mm | replace: ".", dec }} mm</span>
     </div>
     {%- endfor -%}
   </div>
 
 </div>
-<script>fcChart('{{ chart_id }}', {{ series.temp_hourly | json }}, { height: 170, fill: true, suffix: '°', tick: 3, size: 13, labelEvery: 6, rain: {{ series.rain_hourly | json }} });</script>
+<script>fcChart('{{ chart_id }}', {{ series.temp_hourly | json }}, { fill: true, suffix: '°', tick: 3, size: 13, labelEvery: 6, rain: {{ series.rain_hourly | json }} });</script>
 {%- endif -%}
 
 <div class="title_bar">
