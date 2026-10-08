@@ -11,7 +11,7 @@
     <div class="col col--span-4 gap--small">
       <div class="flex flex--row flex--left flex--center-y gap--small">{{ icons[now.sky.icon] | replace: "__S__", "32" }}<span class="label label--small">{{ s_now }} · {{ now.time }}</span></div>
       <span class="value value--tnums value--xlarge" data-value-fit="true">{{ n_temp }}°</span>
-      <span class="label">{{ cur_sky }}{% if today %} · {{ today.tmax }}° / {{ today.tmin }}°{% endif %}</span>
+      <span class="label">{{ cur_sky }}{% if today %} · {{ today.tmax | default: "—" }}° / {{ today.tmin | default: "—" }}°{% endif %}</span>
     </div>
     <div class="col col--span-8 gap--small">
       <span class="label label--small">{{ rain_line }}</span>

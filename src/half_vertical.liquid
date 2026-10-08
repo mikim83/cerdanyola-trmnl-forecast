@@ -22,8 +22,8 @@
       {{ icons[d.sky.icon] | replace: "__S__", "26" }}
     </div>
     <div class="flex flex--row flex--center-y gap--small">
-      <span class="label">{{ d.tmax }}° / {{ d.tmin }}°</span>
-      <span class="label label--small">{{ d.pop }}%</span>
+      <span class="label">{{ d.tmax | default: "—" }}° / {{ d.tmin | default: "—" }}°</span>
+      <span class="label label--small">{{ d.pop | default: "—" }}%</span>
     </div>
   </div>
   {%- endfor -%}

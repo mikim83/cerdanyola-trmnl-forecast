@@ -36,8 +36,8 @@
     <div class="col col--center gap--small">
       <span class="label label--underline">{% if d.today %}{{ s_today }}{% else %}{{ day_names[d.dow] }}{% endif %}</span>
       {{ icons[d.sky.icon] | replace: "__S__", "40" }}
-      <div class="flex flex--row flex--center-y gap--small"><span class="value value--tnums value--small lg:value--large">{{ d.tmax }}°</span><span class="label">/ {{ d.tmin }}°</span></div>
-      <span class="label label--small">{{ d.pop }}% · {{ d.mm | replace: ".", dec }} mm</span>
+      <div class="flex flex--row flex--center-y gap--small"><span class="value value--tnums value--small lg:value--large">{{ d.tmax | default: "—" }}°</span><span class="label">/ {{ d.tmin | default: "—" }}°</span></div>
+      <span class="label label--small">{{ d.pop | default: "—" }}% · {{ d.mm | replace: ".", dec }} mm</span>
     </div>
     {%- endfor -%}
   </div>

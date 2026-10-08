@@ -10,7 +10,7 @@
     <div class="meta"></div>
     <div class="content">
       <div class="flex flex--row flex--center-y gap--small">{{ icons[now.sky.icon] | replace: "__S__", "40" }}<span class="value value--tnums value--xlarge" data-value-fit="true">{{ n_temp }}°</span></div>
-      <span class="label">{% if today %}{{ today.tmax }}° / {{ today.tmin }}° · {% endif %}{{ cur_sky }}</span>
+      <span class="label">{% if today %}{{ today.tmax | default: "—" }}° / {{ today.tmin | default: "—" }}° · {% endif %}{{ cur_sky }}</span>
       <span class="label label--small">{{ rain_line }}</span>
     </div>
   </div>
