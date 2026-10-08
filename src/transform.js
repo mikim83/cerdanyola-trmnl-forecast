@@ -27,11 +27,14 @@ function transform(input) {
   // Índice del icono (el orden está en shared.liquid): sol, luna, nube, nube-sol, nube-luna,
   // niebla, llovizna, lluvia, tormenta, nieve.
   var ICON = { clear: 0, mostly_clear: 3, partly_cloudy: 3, cloudy: 2, overcast: 2, fog: 5, light_rain: 6, rain: 7, heavy_rain: 7, thunder: 8, snow: 9 };
+  // Orden de los textos del cielo en shared.liquid (s_sky); el último es «sin dato».
+  var LABELS = ['clear', 'mostly_clear', 'partly_cloudy', 'cloudy', 'overcast', 'fog', 'light_rain', 'rain', 'heavy_rain', 'thunder', 'snow'];
   function sky(s) {
     var code = (s && s.code) || 'unknown', night = !!(s && s.night), i = ICON[code];
     if (i == null) i = 2;
     if (night && (i === 0 || i === 3)) i = i === 0 ? 1 : 4;
-    return { code: code, icon: i };
+    var lbl = LABELS.indexOf(code);
+    return { code: code, icon: i, lbl: lbl < 0 ? LABELS.length : lbl };
   }
 
   var now = {

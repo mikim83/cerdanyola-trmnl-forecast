@@ -14,15 +14,19 @@
     </div>
   </div>
   <span class="label label--small">{{ rain_line }}</span>
-  <div class="w--full b-h-gray-5"></div>
-  <div class="grid grid--cols-4 gap--small">
-    {%- for d in days limit: 5 -%}
-    <span class="label">{% if d.today %}{{ s_today }}{% else %}{{ day_names[d.dow] }}{% endif %}</span>
-    <span>{{ icons[d.sky.icon] | replace: "__S__", "26" }}</span>
-    <span class="label">{{ d.tmax }}° / {{ d.tmin }}°</span>
-    <span class="label label--small">{{ d.pop }}%</span>
-    {%- endfor -%}
+  <div class="divider"></div>
+  {%- for d in days limit: 5 -%}
+  <div class="flex flex--row flex--center-y flex--space-between">
+    <div class="flex flex--row flex--center-y gap--small">
+      <span class="label">{% if d.today %}{{ s_today }}{% else %}{{ day_names[d.dow] }}{% endif %}</span>
+      {{ icons[d.sky.icon] | replace: "__S__", "26" }}
+    </div>
+    <div class="flex flex--row flex--center-y gap--small">
+      <span class="label">{{ d.tmax }}° / {{ d.tmin }}°</span>
+      <span class="label label--small">{{ d.pop }}%</span>
+    </div>
   </div>
+  {%- endfor -%}
 </div>
 {%- endif -%}
 
