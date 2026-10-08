@@ -145,7 +145,9 @@
             color: TRMNLCharts.series(1, 3, { el: id }), borderColor: ink, borderWidth: px(1.5)
           }] : []).concat([{ type: 'line', data: pts, zIndex: 2 }])
         }));
-        // Ajusta la altura al espacio libre de la vista (pantallas de distinto tamaño).
+        // Ajusta la altura al espacio libre de la vista (pantallas de distinto tamaño). Hace falta
+        // aunque TRMNLCharts.watch() redibuje: con height null Highcharts no conoce el espacio que
+        // sobra en el layout y deja el gráfico más bajo, con un hueco debajo (probado con stretch-y).
         var fit = function () {
           var layout = chart.container.closest('.layout');
           if (!layout) return;
