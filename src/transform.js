@@ -2,8 +2,9 @@
 // las plantillas. El fichero se regenera cada 30 minutos, así que aquí se descartan las
 // horas ya pasadas. Los números salen con punto decimal: las plantillas dan formato.
 function transform(input) {
-  var hours = (input && input.hours) || [];
-  var days = (input && input.days) || [];
+  // Se descartan los registros mal formados (sin hora o sin fecha) en vez de fallar.
+  var hours = ((input && input.hours) || []).filter(function (h) { return h && typeof h.t === 'string' && typeof h.ts === 'number'; });
+  var days = ((input && input.days) || []).filter(function (d) { return d && typeof d.date === 'string'; });
   if (!hours.length || !days.length) return { no_data: true };
 
   // "2026-10-07T17:00" -> ms como si la hora local fuera UTC (los ejes de Highcharts van
