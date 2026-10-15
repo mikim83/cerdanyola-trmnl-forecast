@@ -10,13 +10,13 @@
 
   <div class="grid">
     <div class="col gap--small col--span-4">
-      <div class="flex flex--row flex--left flex--center-y gap--small">{{ icons[now.sky.icon] | replace: "__S__", "56" }}<span class="label label--underline">{{ s_now }} · {{ now.time }}</span></div>
+      <div class="flex flex--row flex--left flex--center-y gap--small"><span class="lg:hidden">{{ icons[now.sky.icon] | replace: "__S__", "56" }}</span><span class="hidden lg:visible">{{ icons[now.sky.icon] | replace: "__S__", "88" }}</span><span class="label label--underline lg:label--large">{{ s_now }} · {{ now.time }}</span></div>
       <div class="item">
         <div class="meta"></div>
         <div class="content">
           <span class="value value--tnums value--xxxlarge" data-value-fit="true">{{ n_temp }}°</span>
-          <span class="label">{{ cur_sky }} · {{ s_feels }} {{ n_feels }}°</span>
-          <span class="label label--small">{{ s_wind }} {{ now.wind }} km/h {{ w_dir }} · {{ s_hum }} {{ now.hum }}%</span>
+          <span class="label lg:label--large">{{ cur_sky }} · {{ s_feels }} {{ n_feels }}°</span>
+          <span class="label label--small lg:label--base">{{ s_wind }} {{ now.wind }} km/h {{ w_dir }} · {{ s_hum }} {{ now.hum }}%</span>
         </div>
       </div>
     </div>
@@ -27,17 +27,25 @@
     </div>
   </div>
 
-  <span class="label label--small">{{ rain_line }}</span>
+  <span class="label label--small lg:label--base">{{ rain_line }}</span>
+
+  <div class="hidden lg:grid grid--cols-4 gap--small">
+    <div class="item"><div class="meta"></div><div class="content"><span class="value value--tnums value--small">{{ sunrise }}–{{ sunset }}</span><span class="label label--small">{{ s_sun }}</span></div></div>
+    <div class="item"><div class="meta"></div><div class="content"><span class="value value--tnums value--small">{{ now.uv | default: "—" | replace: ".", dec }}</span><span class="label label--small">{{ s_uv }}</span></div></div>
+    <div class="item"><div class="meta"></div><div class="content"><span class="value value--tnums value--small">{{ now.gust | default: "—" }} km/h</span><span class="label label--small">{{ s_gust }}</span></div></div>
+    <div class="item"><div class="meta"></div><div class="content"><span class="value value--tnums value--small">{{ n_rain24 | default: "0" }} mm</span><span class="label label--small">{{ s_rain }} 24 h</span></div></div>
+  </div>
 
   <div class="divider"></div>
 
   <div class="grid grid--cols-5">
     {%- for d in days limit: 5 -%}
     <div class="col col--center gap--small">
-      <span class="label label--underline">{% if d.today %}{{ s_today }}{% else %}{{ day_names[d.dow] }}{% endif %}</span>
-      {{ icons[d.sky.icon] | replace: "__S__", "40" }}
-      <div class="flex flex--row flex--center-y gap--small"><span class="value value--tnums value--small lg:value--large">{{ d.tmax | default: "—" }}°</span><span class="label">/ {{ d.tmin | default: "—" }}°</span></div>
-      <span class="label label--small">{{ d.pop | default: "—" }}% · {{ d.mm | replace: ".", dec }} mm</span>
+      <span class="label label--underline lg:label--large">{% if d.today %}{{ s_today }}{% else %}{{ day_names[d.dow] }}{% endif %}</span>
+      <span class="lg:hidden">{{ icons[d.sky.icon] | replace: "__S__", "40" }}</span><span class="hidden lg:visible">{{ icons[d.sky.icon] | replace: "__S__", "64" }}</span>
+      <div class="flex flex--row flex--center-y gap--small"><span class="value value--tnums value--small lg:value--xlarge">{{ d.tmax | default: "—" }}°</span><span class="label lg:label--large">/ {{ d.tmin | default: "—" }}°</span></div>
+      <span class="label label--small lg:label--base">{{ d.pop | default: "—" }}% · {{ d.mm | replace: ".", dec }} mm</span>
+      <span class="hidden lg:visible label label--small">{{ d.wind | default: "—" }} km/h {{ d.wind_dir }}</span>
     </div>
     {%- endfor -%}
   </div>

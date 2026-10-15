@@ -9,12 +9,14 @@
 <div class="layout">
   <div class="grid">
     <div class="col col--span-4 gap--small">
-      <div class="flex flex--row flex--left flex--center-y gap--small">{{ icons[now.sky.icon] | replace: "__S__", "32" }}<span class="label label--small">{{ s_now }} · {{ now.time }}</span></div>
+      <div class="flex flex--row flex--left flex--center-y gap--small"><span class="lg:hidden">{{ icons[now.sky.icon] | replace: "__S__", "32" }}</span><span class="hidden lg:visible">{{ icons[now.sky.icon] | replace: "__S__", "56" }}</span><span class="label label--small lg:label--base">{{ s_now }} · {{ now.time }}</span></div>
       <span class="value value--tnums value--xlarge" data-value-fit="true">{{ n_temp }}°</span>
-      <span class="label">{{ cur_sky }}{% if today %} · {{ today.tmax | default: "—" }}° / {{ today.tmin | default: "—" }}°{% endif %}</span>
+      <span class="label lg:label--large">{{ cur_sky }}{% if today %} · {{ today.tmax | default: "—" }}° / {{ today.tmin | default: "—" }}°{% endif %}</span>
+      <span class="hidden lg:visible label label--small">{{ s_feels }} {{ n_feels }}° · {{ s_wind }} {{ now.wind }} km/h {{ w_dir }}</span>
+      <span class="hidden lg:visible label label--small">{{ s_hum }} {{ now.hum }}% · {{ s_uv }} {{ now.uv | default: "—" | replace: ".", dec }} · {{ s_sun }} {{ sunrise }}–{{ sunset }}</span>
     </div>
     <div class="col col--span-8 gap--small">
-      <span class="label label--small">{{ rain_line }}</span>
+      <span class="label label--small lg:label--base">{{ rain_line }}</span>
       <div id="{{ chart_id }}" class="w--full"></div>
     </div>
   </div>
