@@ -96,16 +96,23 @@
   // convierten en un tramado/transparente que haría desaparecer los trazos finos, así que ahí
   // fcAccent devuelve null y se conserva el negro. cls: clase del framework (por defecto
   // text--red); el framework la lleva al color más cercano de la paleta (text--blue sale rojo en
-  // la OG de 4 colores, que no tiene azul). Los trazos con data-fc="blue|yellow" de los iconos
+  // la OG de 4 colores, que no tiene azul: ahí se devuelve null). Los trazos con data-fc="blue|yellow" de los iconos
   // (gotas, rayo, sol) se pintan así; el resto del icono sigue en negro.
   window.fcAccent = function (cls) {
     var s = document.querySelector('.screen');
     if (!s || !/screen--color-\w+/.test(s.className)) return null;
-    var probe = document.createElement('span');
-    probe.className = cls || 'text--red';
-    s.appendChild(probe);
-    var c = getComputedStyle(probe).color;
-    s.removeChild(probe);
+    var get = function (k) {
+      var probe = document.createElement('span');
+      probe.className = k;
+      s.appendChild(probe);
+      var col = getComputedStyle(probe).color;
+      s.removeChild(probe);
+      return col;
+    };
+    var c = get(cls || 'text--red');
+    // Si el framework lo ha llevado al rojo (la pantalla no tiene ese color, p. ej. azul en la OG
+    // de 4 colores), se deja en negro: el rojo se leería como una alerta.
+    if (cls && cls !== 'text--red' && c === get('text--red')) return null;
     return c;
   };
   (function () {

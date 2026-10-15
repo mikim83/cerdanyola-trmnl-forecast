@@ -54,7 +54,7 @@ Capturas renderizadas por TRMNL. En la TRMNL X (clases `lg:`) los iconos y texto
 
 Incluye las cuatro vistas de TRMNL: pantalla completa, media horizontal, media vertical y cuarto de pantalla.
 
-En pantallas de color (p. ej. TRMNL OG de 4 colores) las barras de lluvia y las gotas de los iconos se dibujan en **azul** (en **rojo** si la pantalla no tiene azul, como la OG de 4 colores), y el sol y el rayo en **amarillo**; el resto, en negro; en 1 bit y en grises se mantienen en negro/tramado.
+En pantallas de color (p. ej. TRMNL OG de 4 colores) las barras de lluvia y las gotas de los iconos se dibujan en **azul** (en negro si la pantalla no tiene azul, como la OG de 4 colores), y el sol y el rayo en **amarillo**; el resto, en negro; en 1 bit y en grises se mantienen en negro/tramado.
 
 ## Ajustes del plugin
 

@@ -54,7 +54,7 @@ Captures renderitzades per TRMNL. A la TRMNL X (classes `lg:`) les icones i els 
 
 Inclou les quatre vistes de TRMNL: pantalla completa, mitja horitzontal, mitja vertical i quart de pantalla.
 
-En pantalles de color (p. ex. TRMNL OG 4 colors) les barres de pluja i les gotes de les icones es dibuixen en **blau** (en **vermell** si la pantalla no té blau, com la OG de 4 colors), i el sol i el llamp en **groc**; la resta, en negre; en 1 bit i en grisos es mantenen en negre/tramat.
+En pantalles de color (p. ex. TRMNL OG 4 colors) les barres de pluja i les gotes de les icones es dibuixen en **blau** (en negre si la pantalla no té blau, com la OG de 4 colors), i el sol i el llamp en **groc**; la resta, en negre; en 1 bit i en grisos es mantenen en negre/tramat.
 
 ## Ajustos del plugin
 
