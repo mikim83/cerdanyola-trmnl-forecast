@@ -8,13 +8,24 @@ Projecte personal i no oficial. Complementa el plugin del temps en directe [mete
 
 ## Captures
 
-![Vista completa](docs/screenshots/full_ca.png)
+### TRMNL OG (pantalla normal, 1 bit)
+
+![Vista completa](docs/screenshots/og_full_ca.png)
 
 | Mitja pantalla horitzontal | Mitja pantalla vertical | Quart de pantalla |
 |---|---|---|
-| ![Mitja pantalla horitzontal](docs/screenshots/half_horizontal_ca.png) | ![Mitja pantalla vertical](docs/screenshots/half_vertical_ca.png) | ![Quart de pantalla](docs/screenshots/quadrant_ca.png) |
+| ![Mitja pantalla horitzontal](docs/screenshots/og_half_horizontal_ca.png) | ![Mitja pantalla vertical](docs/screenshots/og_half_vertical_ca.png) | ![Quart de pantalla](docs/screenshots/og_quadrant_ca.png) |
 
-Captures renderitzades en un navegador (TRMNX, escala de grisos): la pantalla normal és d'1 bit (blanc i negre).
+### TRMNL X (escala de grisos)
+
+![Vista completa](docs/screenshots/x_full_ca.png)
+
+| Mitja pantalla horitzontal | Mitja pantalla vertical | Quart de pantalla |
+|---|---|---|
+| ![Mitja pantalla horitzontal](docs/screenshots/x_half_horizontal_ca.png) | ![Mitja pantalla vertical](docs/screenshots/x_half_vertical_ca.png) | ![Quart de pantalla](docs/screenshots/x_quadrant_ca.png) |
+
+Captures renderitzades per TRMNL. A la TRMNL X (classes `lg:`) les icones i els textos s'amplien i apareix informació addicional: sol, UV, ratxa, pluja de 24 h, vent diari i humitat.
+
 
 ## Què mostra
 

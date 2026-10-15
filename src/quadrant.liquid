@@ -9,9 +9,10 @@
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <div class="flex flex--row flex--center-y gap--small">{{ icons[now.sky.icon] | replace: "__S__", "40" }}<span class="value value--tnums value--xlarge" data-value-fit="true">{{ n_temp }}°</span></div>
-      <span class="label">{% if today %}{{ today.tmax | default: "—" }}° / {{ today.tmin | default: "—" }}° · {% endif %}{{ cur_sky }}</span>
-      <span class="label label--small">{{ rain_line }}</span>
+      <div class="flex flex--row flex--center-y gap--small"><span class="lg:hidden">{{ icons[now.sky.icon] | replace: "__S__", "40" }}</span><span class="hidden lg:visible">{{ icons[now.sky.icon] | replace: "__S__", "72" }}</span><span class="value value--tnums value--xlarge lg:value--xxlarge" data-value-fit="true">{{ n_temp }}°</span></div>
+      <span class="label lg:label--large">{% if today %}{{ today.tmax | default: "—" }}° / {{ today.tmin | default: "—" }}° · {% endif %}{{ cur_sky }}</span>
+      <span class="hidden lg:visible label label--small">{{ s_feels }} {{ n_feels }}° · {{ s_wind }} {{ now.wind }} km/h {{ w_dir }} · {{ s_hum }} {{ now.hum }}%</span>
+      <span class="label label--small lg:label--base">{{ rain_line }}</span>
     </div>
   </div>
 </div>

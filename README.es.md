@@ -8,13 +8,24 @@ Proyecto personal y no oficial. Complementa el plugin del tiempo en directo [met
 
 ## Capturas
 
-![Vista completa](docs/screenshots/full_es.png)
+### TRMNL OG (pantalla normal, 1 bit)
+
+![Vista completa](docs/screenshots/og_full_es.png)
 
 | Media pantalla horizontal | Media pantalla vertical | Cuarto de pantalla |
 |---|---|---|
-| ![Media pantalla horizontal](docs/screenshots/half_horizontal_es.png) | ![Media pantalla vertical](docs/screenshots/half_vertical_es.png) | ![Cuarto de pantalla](docs/screenshots/quadrant_es.png) |
+| ![Media pantalla horizontal](docs/screenshots/og_half_horizontal_es.png) | ![Media pantalla vertical](docs/screenshots/og_half_vertical_es.png) | ![Cuarto de pantalla](docs/screenshots/og_quadrant_es.png) |
 
-Capturas renderizadas en un navegador (TRMNX, escala de grises): la pantalla normal es de 1 bit (blanco y negro).
+### TRMNL X (escala de grises)
+
+![Vista completa](docs/screenshots/x_full_es.png)
+
+| Media pantalla horizontal | Media pantalla vertical | Cuarto de pantalla |
+|---|---|---|
+| ![Media pantalla horizontal](docs/screenshots/x_half_horizontal_es.png) | ![Media pantalla vertical](docs/screenshots/x_half_vertical_es.png) | ![Cuarto de pantalla](docs/screenshots/x_quadrant_es.png) |
+
+Capturas renderizadas por TRMNL. En la TRMNL X (clases `lg:`) los iconos y textos se amplían y aparece información adicional: sol, UV, racha, lluvia de 24 h, viento diario y humedad.
+
 
 ## Qué muestra
 

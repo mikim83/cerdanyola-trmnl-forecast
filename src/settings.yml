@@ -46,6 +46,8 @@ custom_fields:
   category: environment,life
   description: Weather forecast for Cerdanyola del Vallès (Barcelona) from meteo.dob-world.com, a home weather station. Combines AEMET with the AROME, ECMWF and ICON models. Shows the current hour, a 24 h temperature chart with hourly rain bars, rain windows and the next 5 days. Languages - Catalan, Spanish and English. Unofficial personal project.
   github_url: https://github.com/mikim83/cerdanyola-trmnl-forecast
+  description-es: Previsión del tiempo para Cerdanyola del Vallès (Barcelona) de meteo.dob-world.com, una estación meteorológica doméstica. Combina AEMET con los modelos AROME, ECMWF e ICON. Muestra la hora actual, un gráfico de temperatura a 24 h con barras de lluvia por hora, los tramos de lluvia y los próximos 5 días. Idiomas - catalán, castellano e inglés. Proyecto personal no oficial.
+  description-ca: Previsió del temps per a Cerdanyola del Vallès (Barcelona) de meteo.dob-world.com, una estació meteorològica domèstica. Combina l'AEMET amb els models AROME, ECMWF i ICON. Mostra l'hora actual, un gràfic de temperatura a 24 h amb barres de pluja per hora, els trams de pluja i els propers 5 dies. Idiomes - català, castellà i anglès. Projecte personal no oficial.
   learn_more_url: https://meteo.dob-world.com
 name: Cerdanyola Forecast
 description: Previsió del temps a Cerdanyola del Vallès (meteo.dob-world.com)
