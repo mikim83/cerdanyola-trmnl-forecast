@@ -36,6 +36,8 @@ Captures renderitzades per TRMNL. A la TRMNL X (classes `lg:`) les icones i els 
 
 Inclou les quatre vistes de TRMNL: pantalla completa, mitja horitzontal, mitja vertical i quart de pantalla.
 
+En pantalles de color (p. ex. TRMNL OG 4 colors) la pluja de les barres i la icona de tempesta es dibuixen en **vermell**; en 1 bit i en grisos es mantenen en negre/tramat.
+
 ## Ajustos del plugin
 
 | Camp | Valors | Per defecte |
