@@ -24,6 +24,16 @@ Proyecto personal y no oficial. Complementa el plugin del tiempo en directo [met
 |---|---|---|
 | ![Media pantalla horizontal](docs/screenshots/x_half_horizontal_es.png) | ![Media pantalla vertical](docs/screenshots/x_half_vertical_es.png) | ![Cuarto de pantalla](docs/screenshots/x_quadrant_es.png) |
 
+### TRMNL OG 4 colores (simulación)
+
+![Vista completa](docs/screenshots/bwry_full_es.png)
+
+| Media pantalla horizontal | Media pantalla vertical | Cuarto de pantalla |
+|---|---|---|
+| ![Media pantalla horizontal](docs/screenshots/bwry_half_horizontal_es.png) | ![Media pantalla vertical](docs/screenshots/bwry_half_vertical_es.png) | ![Cuarto de pantalla](docs/screenshots/bwry_quadrant_es.png) |
+
+Simulación local con el CSS del framework (`screen--color-4bwry`) y datos de ejemplo con lluvia y tormenta; el renderizador de TRMNL no muestra el color.
+
 Capturas renderizadas por TRMNL. En la TRMNL X (clases `lg:`) los iconos y textos se amplían y aparece información adicional: sol, UV, racha, lluvia de 24 h, viento diario y humedad.
 
 
