@@ -24,6 +24,24 @@ Projecte personal i no oficial. Complementa el plugin del temps en directe [mete
 |---|---|---|
 | ![Mitja pantalla horitzontal](docs/screenshots/x_half_horizontal_ca.png) | ![Mitja pantalla vertical](docs/screenshots/x_half_vertical_ca.png) | ![Quart de pantalla](docs/screenshots/x_quadrant_ca.png) |
 
+### Pantalles de 6 colors (simulació)
+
+![Vista completa](docs/screenshots/c6a_full_ca.png)
+
+| Mitja pantalla horitzontal | Mitja pantalla vertical | Quart de pantalla |
+|---|---|---|
+| ![Mitja pantalla horitzontal](docs/screenshots/c6a_half_horizontal_ca.png) | ![Mitja pantalla vertical](docs/screenshots/c6a_half_vertical_ca.png) | ![Quart de pantalla](docs/screenshots/c6a_quadrant_ca.png) |
+
+### TRMNL OG 4 colors (simulació)
+
+![Vista completa](docs/screenshots/bwry_full_ca.png)
+
+| Mitja pantalla horitzontal | Mitja pantalla vertical | Quart de pantalla |
+|---|---|---|
+| ![Mitja pantalla horitzontal](docs/screenshots/bwry_half_horizontal_ca.png) | ![Mitja pantalla vertical](docs/screenshots/bwry_half_vertical_ca.png) | ![Quart de pantalla](docs/screenshots/bwry_quadrant_ca.png) |
+
+Simulació local amb el CSS del framework (`screen--color-4bwry`) i dades d'exemple amb pluja i tempesta; el renderitzador de TRMNL no mostra el color.
+
 Captures renderitzades per TRMNL. A la TRMNL X (classes `lg:`) les icones i els textos s'amplien i apareix informació addicional: sol, UV, ratxa, pluja de 24 h, vent diari i humitat.
 
 
@@ -35,6 +53,8 @@ Captures renderitzades per TRMNL. A la TRMNL X (classes `lg:`) les icones i els 
 - **Propers 5 dies**: icona, màxima, mínima, probabilitat de pluja i mm.
 
 Inclou les quatre vistes de TRMNL: pantalla completa, mitja horitzontal, mitja vertical i quart de pantalla.
+
+En pantalles de color (p. ex. TRMNL OG 4 colors) les barres de pluja i les gotes de les icones es dibuixen en **blau** (en negre si la pantalla no té blau, com la OG de 4 colors), i el sol i el llamp en **groc**; la resta, en negre; en 1 bit i en grisos es mantenen en negre/tramat.
 
 ## Ajustos del plugin
 
