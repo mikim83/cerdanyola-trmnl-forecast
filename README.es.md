@@ -24,6 +24,14 @@ Proyecto personal y no oficial. Complementa el plugin del tiempo en directo [met
 |---|---|---|
 | ![Media pantalla horizontal](docs/screenshots/x_half_horizontal_es.png) | ![Media pantalla vertical](docs/screenshots/x_half_vertical_es.png) | ![Cuarto de pantalla](docs/screenshots/x_quadrant_es.png) |
 
+### Pantallas de 6 colores (simulación)
+
+![Vista completa](docs/screenshots/c6a_full_es.png)
+
+| Media pantalla horizontal | Media pantalla vertical | Cuarto de pantalla |
+|---|---|---|
+| ![Media pantalla horizontal](docs/screenshots/c6a_half_horizontal_es.png) | ![Media pantalla vertical](docs/screenshots/c6a_half_vertical_es.png) | ![Cuarto de pantalla](docs/screenshots/c6a_quadrant_es.png) |
+
 ### TRMNL OG 4 colores (simulación)
 
 ![Vista completa](docs/screenshots/bwry_full_es.png)
@@ -46,7 +54,7 @@ Capturas renderizadas por TRMNL. En la TRMNL X (clases `lg:`) los iconos y texto
 
 Incluye las cuatro vistas de TRMNL: pantalla completa, media horizontal, media vertical y cuarto de pantalla.
 
-En pantallas de color (p. ej. TRMNL OG de 4 colores) las barras de lluvia y el icono de tormenta se dibujan en **rojo**; en 1 bit y en grises se mantienen en negro/tramado.
+En pantallas de color (p. ej. TRMNL OG de 4 colores) las barras de lluvia y las gotas de los iconos se dibujan en **azul** (en **rojo** si la pantalla no tiene azul, como la OG de 4 colores), y el sol y el rayo en **amarillo**; el resto, en negro; en 1 bit y en grises se mantienen en negro/tramado.
 
 ## Ajustes del plugin
 
