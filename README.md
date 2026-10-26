@@ -42,7 +42,7 @@ Projecte personal i no oficial. Complementa el plugin del temps en directe [mete
 
 Simulació local amb el CSS del framework (`screen--color-4bwry`) i dades d'exemple amb pluja i tempesta; el renderitzador de TRMNL no mostra el color.
 
-Captures renderitzades per TRMNL. A la TRMNL X (classes `lg:`) les icones i els textos s'amplien i apareix informació addicional: sol, UV, ratxa, pluja de 24 h, vent diari i humitat.
+Captures renderitzades per TRMNL. A la TRMNL X (classes `lg:`) les icones i els textos s'amplien i apareix informació addicional: sol, UV, ratxa, pluja de 24 h, vent diari i humitat; al quart de pantalla, els 3 dies següents.
 
 
 ## Què mostra

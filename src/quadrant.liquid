@@ -15,6 +15,20 @@
       <span class="label label--small lg:label--base">{{ rain_line }}</span>
     </div>
   </div>
+  {%- comment -%} Solo en TRMNX: los 3 días siguientes (hay sitio de sobra en el cuarto de pantalla) {%- endcomment -%}
+  <div class="hidden lg:visible w--full">
+    <div class="divider"></div>
+    <div class="grid grid--cols-3">
+      {%- for d in days offset: 1 limit: 3 -%}
+      <div class="col col--center gap--small">
+        <span class="label label--underline">{{ day_names[d.dow] }}</span>
+        {{ icons[d.sky.icon] | replace: "__S__", "40" }}
+        <div class="flex flex--row flex--center-y gap--small"><span class="value value--tnums value--small">{{ d.tmax | default: "—" }}°</span><span class="label">/ {{ d.tmin | default: "—" }}°</span></div>
+        <span class="label label--small">{{ d.pop | default: "—" }}%</span>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
 </div>
 {%- endif -%}
 
